@@ -20,7 +20,8 @@ fun AppNavigation(modifier: Modifier = Modifier){
             LoginScreen (
                 onLoginOk = {navController.navigate("peliculas"){
                     popUpTo("login") {inclusive = true}
-                } }
+                } },
+                onRegistrarse = {navController.navigate("registro")}
             )
         }
         composable("peliculas"){
