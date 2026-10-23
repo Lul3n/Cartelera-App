@@ -24,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
 import elena.fierros.cartelera.ui.theme.CarteleraTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun RegistroScreen(
@@ -63,7 +65,7 @@ fun RegistroScreen(
         if (mensajeError.isNotEmpty()){
             Text(
                 text = mensajeError,
-                style = MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error
             )
         }
         Button(

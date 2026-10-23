@@ -1,5 +1,7 @@
 package elena.fierros.cartelera
 
+import android.R
+import android.se.omapi.Session
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,19 +20,36 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.TextButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.tooling.preview.Preview
+import elena.fierros.cartelera.ui.theme.CarteleraTheme
 
 @Composable
-fun PeliculasScreen(onPeliculaClick: (Int) -> Unit){
+fun PeliculasScreen(
+        correo : String,
+        onPeliculaClick: (Int) -> Unit,
+        onCerrarSesion: () -> Unit
+){
     Column(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = "Películas",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(16.dp)
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = "Peliculas",
+                    style = MaterialTheme.typography.headlineMedium
+                )
+                Text(text = correo, style = MaterialTheme.typography.bodySmall)
+            }
+            TextButton(onClick = onCerrarSesion) { Text("Cerrar Sesión") }
+        }
         LazyColumn (
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -77,5 +96,16 @@ fun PeliculaItem(pelicula: Pelicula, onClick: () -> Unit){
                 )
             }
         }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun PeliculasScreenPreview(){
+    CarteleraTheme() {
+        PeliculasScreen(
+            correo = "prueba@correo.com",
+            onPeliculaClick = {},
+            onCerrarSesion = {}
+        )
     }
 }
